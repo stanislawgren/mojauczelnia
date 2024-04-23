@@ -9,3 +9,11 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
   console.log(`Moja Uczelnia API is live on port: ${port}`)
 })
+
+let sql = require('./db.js')
+
+sql.query('SELECT 1 + 1 AS solution', (err, rows, fields) => {
+  if (err) throw err
+
+  console.log('Database test: ', rows[0].solution)
+})
