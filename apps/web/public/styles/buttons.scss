@@ -1,0 +1,30 @@
+button {
+    font-family: "Poppins";
+    font-size: 20px;
+}
+
+.main-button {
+    background-color: white;
+    border-radius: 40px;
+    border: none;
+    width: fit-content;
+    padding: 10px;
+    min-width: 200px;
+    height: fit-content;
+    cursor: pointer;
+}
+
+.icon-button {
+    background-color: #e4e4e4;
+    min-width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 50%;
+
+    &span {
+        color:#a7a7a7
+    }
+}
