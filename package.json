@@ -11,6 +11,7 @@
     "@repo/eslint-config": "*",
     "@repo/typescript-config": "*",
     "prettier": "^3.2.5",
+    "sass": "^1.75.0",
     "turbo": "latest"
   },
   "engines": {
@@ -22,6 +23,8 @@
     "packages/*"
   ],
   "dependencies": {
-    "express": "^4.19.2"
+    "express": "^4.19.2",
+    "mysql": "^2.18.1",
+    "react-router-dom": "^6.22.3"
   }
 }
