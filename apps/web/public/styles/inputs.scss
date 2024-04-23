@@ -3,6 +3,7 @@ input {
 }
 
 .main-input {
+    box-sizing: border-box;
     border-radius: 20px;
     width: 100%;
     min-width: 200px;
