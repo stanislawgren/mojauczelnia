@@ -1,4 +1,6 @@
 import logo from "./../assets/logo.svg";
+import { Link } from 'react-router-dom';
+
 
 export const MainPage = () => {
   return (
@@ -11,9 +13,16 @@ export const MainPage = () => {
             alt="logo"
             style={{ position: "absolute", left: "-20px" }}
           />
-          <button className="main-button" style={{ justifySelf: "flex-end" }}>
+          {/* TODO Poprawic tu CSS  */}
+          <Link to="/login" className="main-button" style={{ textAlign: "center" , fontFamily: "Poppins", fontSize: "20px", justifySelf: "flex-end" }}>
             Zaloguj się
-          </button>
+          </Link>
+          <div style={{ width: "20px" }}> 
+          {/* TODO dodać jakis margin czy cos  */}
+          </div>
+          <Link to="/register" className="main-button" style={{ textAlign: "center" , fontFamily: "Poppins", fontSize: "20px", justifySelf: "flex-end" }}>
+            Zarejestruj się
+          </Link>
         </div>
       </div>
       <div className="main-page__container">
