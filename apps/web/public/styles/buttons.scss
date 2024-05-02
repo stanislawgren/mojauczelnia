@@ -12,6 +12,14 @@ button, Link {
     min-width: 200px;
     height: fit-content;
     cursor: pointer;
+    color: black;
+    text-align: center;
+    font-Family: "Poppins";
+    text-decoration: none;
+}
+
+.main-button:hover {
+    background-color: #dedede;
 }
 
 .icon-button {
@@ -40,4 +48,8 @@ button, Link {
     color: white;
     height: fit-content;
     cursor: pointer;
+}
+
+.blue-button:hover {
+    background-color: #5f8be6;
 }

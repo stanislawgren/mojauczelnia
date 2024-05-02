@@ -13,16 +13,16 @@ export const MainPage = () => {
             alt="logo"
             style={{ position: "absolute", left: "-20px" }}
           />
-          {/* TODO Poprawic tu CSS  */}
-          <Link to="/login" className="main-button" style={{ textAlign: "center" , fontFamily: "Poppins", fontSize: "20px", justifySelf: "flex-end" }}>
+
+          <Link to="/login" className="main-button" style={{  }}>
             Zaloguj się
           </Link>
           <div style={{ width: "20px" }}> 
-          {/* TODO dodać jakis margin czy cos  */}
           </div>
-          <Link to="/register" className="main-button" style={{ textAlign: "center" , fontFamily: "Poppins", fontSize: "20px", justifySelf: "flex-end" }}>
+          <Link to="/register" className="main-button" style={{  }}>
             Zarejestruj się
           </Link>
+          
         </div>
       </div>
       <div className="main-page__container">
