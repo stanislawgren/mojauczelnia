@@ -6,8 +6,9 @@ import { MainPage } from "./pages";
 import { LoginPage } from "./pages/login";
 import { RegisterPage } from "./pages/register";
 import { AuthProvider } from "./hooks/useAuth";
-import { CookiesProvider } from "react-cookie";
+// import { CookiesProvider } from "react-cookie";
 import { RequireAuth } from "./components/RequireAuth";
+import { TestAlerts } from "./pages/testalerts";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
@@ -17,6 +18,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
           <Route path="/" element={<MainPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
+            <Route path="/testalerts" element={<TestAlerts />} />
           
           {/* Example protected route */}
           <Route path="/example" element={
