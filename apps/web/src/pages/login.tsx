@@ -1,5 +1,4 @@
 // import logo from "./../assets/auth_logo.svg";
-
 import { useState } from "react";
 import { useAuth } from "../hooks/useAuth";
 
