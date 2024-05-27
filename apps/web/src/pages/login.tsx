@@ -1,17 +1,20 @@
 // import logo from "./../assets/auth_logo.svg";
 import { useState } from "react";
 import { useAuth } from "../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 export const LoginPage = () => {
   const auth = useAuth();
+  const navigate = useNavigate()
 
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
   const handleLogin = async () => {
-    const result = await auth.signIn(email, password);
-
-    console.log(result);
+    const result = await auth.signIn(email, password)
+    if (result) {
+      navigate('/')
+    }
   };
 
   return (

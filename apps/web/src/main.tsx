@@ -6,7 +6,6 @@ import { MainPage } from "./pages";
 import { LoginPage } from "./pages/login";
 import { RegisterPage } from "./pages/register";
 import { AuthProvider } from "./hooks/useAuth";
-import { CookiesProvider } from "react-cookie";
 import { RequireAuth } from "./components/RequireAuth";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(

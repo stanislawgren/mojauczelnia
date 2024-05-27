@@ -25,6 +25,9 @@
     "packages/*"
   ],
   "dependencies": {
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
+    "@mui/material": "^5.15.18",
     "axios": "^1.6.8",
     "bcrypt": "^5.1.1",
     "cors": "^2.8.5",
