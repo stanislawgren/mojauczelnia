@@ -8,25 +8,25 @@ const registerLogic = (email: any, password: any, confirmPassword: any) => {
       confirmPassword: confirmPassword
     };
 
-    if (data.email === "" || data.password === "" || data.confirmPassword === "") {
-      alert("Please fill in all fields!");
-      return;
-    }
+    // if (data.email === "" || data.password === "" || data.confirmPassword === "") {
+    //   alert("Please fill in all fields!");
+    //   return;
+    // }
 
-    if (!data.email.includes("@")) {
-      alert("Invalid email!");
-      return;
-    }
+    // if (!data.email.includes("@")) {
+    //   alert("Invalid email!");
+    //   return;
+    // }
 
-    if (data.password.length < 6) {
-      alert("Password must be at least 6 characters long!");
-      return;
-    }
+    // if (data.password.length < 6) {
+    //   alert("Password must be at least 6 characters long!");
+    //   return;
+    // }
 
-    if (data.password !== data.confirmPassword) {
-      alert("Passwords do not match!");
-      return;
-    }
+    // if (data.password !== data.confirmPassword) {
+    //   alert("Passwords do not match!");
+    //   return;
+    // }
 
     // // Password security check
     // const hasUpperCase = /[A-Z]/.test(data.password);x

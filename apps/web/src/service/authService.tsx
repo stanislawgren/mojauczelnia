@@ -6,7 +6,8 @@ export const register = async (email: any, password: any) => {
     password: password,
   };
 
-  await axios.post("http://localhost:3000/register", data)
+  await axios
+    .post("http://localhost:3000/auth/register", data)
     .then((response: any) => {
       if (response.data) {
         window.location.href = "/login";
@@ -23,7 +24,8 @@ export const login = async (email: any, password: any) => {
     password: password,
   };
 
-  await axios.post("http://localhost:3000/login", data)
+  await axios
+    .post("http://localhost:3000/login", data)
     .then((response: any) => {
       if (response.data) {
         window.location.href = "/";
