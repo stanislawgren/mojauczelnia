@@ -42,3 +42,12 @@ body {
     background-position: center top;
     background-size: cover;
 }
+
+body .MuiOutlinedInput-root {
+    @extend .main-input;
+    max-height: unset;
+}
+
+.MuiOutlinedInput-notchedOutline {
+    border: none !important;
+}
