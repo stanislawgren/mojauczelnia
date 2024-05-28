@@ -7,7 +7,6 @@ form {
 
 input {
     font-family: "Poppins";
-    margin-bottom: 1em;
 }
 
 .main-input {
@@ -16,9 +15,9 @@ input {
     width: 100%;
     min-width: 200px;
     border: 1px solid #979797;
-    height: fit-content;
     padding: 15px;
     font-size: 20px;
+    max-height: 63.75px;
 
     &::placeholder {
         color: black;

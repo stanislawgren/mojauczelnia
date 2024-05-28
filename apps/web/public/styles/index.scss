@@ -1,8 +1,11 @@
+@import "./variables.scss";
 @import "./fonts.scss";
 @import "./mainPage.scss";
 @import "./buttons.scss";
 @import "./inputs.scss";
 @import "./auth.scss";
+@import "./university.scss";
+@import "./profile.scss";
 
 #root {
     font-family: "Poppins";
@@ -40,4 +43,13 @@ body {
     background-repeat: no-repeat;
     background-position: center top;
     background-size: cover;
+}
+
+body .MuiOutlinedInput-root {
+    @extend .main-input;
+    max-height: unset;
+}
+
+.MuiOutlinedInput-notchedOutline {
+    border: none !important;
 }
