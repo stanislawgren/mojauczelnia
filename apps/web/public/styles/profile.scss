@@ -1,0 +1,103 @@
+
+.user-profile-page {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    background: #212121; 
+
+    .sidebar {
+        color: white;
+        display: flex;
+        flex-direction: column;
+        font-size: 18px;
+        font-family: "Poppins";
+
+        .logoWithoutName {
+            padding: 0%;
+        }
+
+        ul {
+            list-style: none;
+
+            li {
+                margin-bottom: 30px;
+
+                &.settings-item { 
+                    margin-bottom: 80px; 
+                }
+
+                a {
+                    
+                    color: white;
+                    text-decoration: none;
+
+                    &:hover {
+                        color: rgba(255, 255, 255, 0.527); 
+                    }
+                }
+            }
+        }
+    }
+    .separator {
+        margin-top: 50px;
+        margin-left: 100px;
+        height: 90%;
+        color: #ffffff78; 
+    }
+    
+
+    .form-container {
+        flex: 3;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 50px; 
+        font-family: "Poppins";
+
+        h1 {
+            width: 100%; 
+            color: white;
+            margin-bottom: 60px;
+            text-align: left;
+            font-size: 18px;
+            margin-left: 400px;
+        }
+
+        .profile-photo-container{
+            margin-bottom: 100px;
+        }
+
+
+            form {
+                width: 60%; 
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                .main-input {
+                    width: 100%; 
+                    min-width: 200px; 
+                    margin-bottom: 25px;
+                    border: 1px solid #979797;
+                    border-radius: 20px;
+                    padding: 10px 15px; 
+                    font-size: 14px; 
+
+                    &::placeholder {
+                        color: #aaa; 
+                    }
+                }
+
+                .blue-button {
+                    align-self: flex-start;
+                    padding: 8px 16px;
+                    width: 2px; 
+                    height: 36px;  
+                    margin-top: 20px; 
+                    font-size: 14px; 
+                }
+            }
+        
+    }
+}
