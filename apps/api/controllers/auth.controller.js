@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const authModel = require("../models/auth.model");
+const {signJwt} = require("../jwt/actions");
 
 exports.login = async (req, res) => {
   const { email, password } = req.body;
@@ -9,12 +10,11 @@ exports.login = async (req, res) => {
   let result;
   try {
     result = await authModel.login(email);
+    if (!result) throw new Error(`Authentication failed`)
   } catch (err) {
     res.send({ status: "err" });
     return;
   }
-
-  console.log(result);
 
   if (!bcrypt.compareSync(password, result.password)) {
     res.send({ status: "err", message: "INVALID_CREDENCIALS" });
@@ -24,14 +24,7 @@ exports.login = async (req, res) => {
   delete result.password;
 
   try {
-    token = jwt.sign(
-      {
-        userId: result.user_id,
-        email: result.email,
-      },
-      "secretkeyappearshere",
-      { expiresIn: "365d" }
-    );
+    token = signJwt(result.email, result.user_id)
   } catch (err) {
     res.send({ status: "err", error: "JWT_ERR" });
     return;
@@ -53,9 +46,16 @@ exports.register = async (req, res) => {
     res.send({ status: "err" });
   }
 
-  res.send({ status: "OK" });
+  let user = await authModel.login(email)
+  delete user.password;
+
+  let token = signJwt(user.id);
+
+  res.send({ status: "OK", token: token, user: user });
 };
 
-exports.xd = (req, res) => {
-  res.send({ status: "OK" });
+exports.check_in = async (req, res) => {
+  let user = await authModel.login(req.user.email)
+  delete user.password;
+  res.send({ status: "OK", user: user });
 };

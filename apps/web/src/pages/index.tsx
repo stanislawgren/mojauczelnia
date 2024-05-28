@@ -1,3 +1,4 @@
+import {useAuth} from "../hooks/useAuth";
 import logo from "./../assets/logo.svg";
 import {Link, useSearchParams} from 'react-router-dom';
 import {ChangeEvent, useEffect, useState} from "react";
@@ -13,6 +14,7 @@ export interface IFilters {
 }
 
 export const MainPage = () => {
+  const auth = useAuth()
   const [searchParams, setSearchParams] = useSearchParams()
 
   const [filters, setFilters] = useState<IFilters>({
@@ -49,14 +51,27 @@ export const MainPage = () => {
             style={{position: "absolute", left: "-20px"}}
           />
 
-          <Link to="/login" className="main-button" style={{}}>
-            Zaloguj się
-          </Link>
-          <div style={{width: "20px"}}>
-          </div>
-          <Link to="/register" className="main-button" style={{}}>
-            Zarejestruj się
-          </Link>
+          {
+            auth.token ?
+              <>
+                <span className="main-button" style={{}} onClick={() => {
+                  auth.signOut()
+                }}>
+                  Wyloguj (przykład)
+                </span>
+              </>
+              :
+              <>
+                <Link to="/login" className="main-button" style={{}}>
+                  Zaloguj się
+                </Link>
+                <div style={{width: "20px"}}>
+                </div>
+                <Link to="/register" className="main-button" style={{}}>
+                  Zarejestruj się
+                </Link>
+              </>
+          }
 
         </div>
       </div>
