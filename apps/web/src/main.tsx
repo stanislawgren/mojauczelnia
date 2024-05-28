@@ -10,8 +10,8 @@ import { UniversityDepartamentPage } from "./pages/universityDepartament";
 import { UniversityContactPage } from "./pages/universityContact";
 import { UniversityRecruitmentPage } from "./pages/universityRecruitment";
 import { AuthProvider } from "./hooks/useAuth";
-import { CookiesProvider } from "react-cookie";
 import { RequireAuth } from "./components/RequireAuth";
+import {ExamplePaginationPage} from "./pages/_example_pagination.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
@@ -25,7 +25,9 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
           <Route path="/universityDepartament" element={<UniversityDepartamentPage />} />
           <Route path="/universityContact" element={<UniversityContactPage />} />
           <Route path="/universityRecruitment" element={<UniversityRecruitmentPage />} />
-          
+          {/* Example pagination */}
+          <Route path="/pagination" element={<ExamplePaginationPage />} />
+          <Route path="/profile" element={<UserProfilePage />} />
           {/* Example protected route */}
           <Route path="/example" element={
             <RequireAuth>
