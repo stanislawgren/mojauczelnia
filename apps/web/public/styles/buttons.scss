@@ -1,0 +1,55 @@
+button, Link {
+    font-family: "Poppins";
+    font-size: 20px;
+}
+
+.main-button {
+    background-color: white;
+    border-radius: 40px;
+    border: none;
+    width: fit-content;
+    padding: 10px;
+    min-width: 200px;
+    height: fit-content;
+    cursor: pointer;
+    color: black;
+    text-align: center;
+    font-Family: "Poppins";
+    text-decoration: none;
+}
+
+.main-button:hover {
+    background-color: #dedede;
+}
+
+.icon-button {
+    background-color: #e4e4e4;
+    min-width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 50%;
+
+    &span {
+        color: #a7a7a7;
+    }
+}
+
+.blue-button {
+    background-color: #73abff;
+    border-radius: 30px;
+    font-size: 24px;
+    border: none;
+    width: 100%;
+    padding: 15px;
+    min-width: 100px;
+    color: white;
+    height: fit-content;
+    cursor: pointer;
+}
+
+.blue-button:hover {
+    background-color: #5f8be6;
+}

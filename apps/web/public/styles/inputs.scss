@@ -1,0 +1,25 @@
+form {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+input {
+    font-family: "Poppins";
+}
+
+.main-input {
+    box-sizing: border-box;
+    border-radius: 20px;
+    width: 100%;
+    min-width: 200px;
+    border: 1px solid #979797;
+    padding: 15px;
+    font-size: 20px;
+    max-height: 63.75px;
+
+    &::placeholder {
+        color: black;
+    }
+}
