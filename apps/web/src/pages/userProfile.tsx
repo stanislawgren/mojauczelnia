@@ -2,6 +2,7 @@ import logoWithoutName from "./../assets/logoWithoutName.svg";
 import { Link } from 'react-router-dom';
 import React, { useState } from 'react';
 import cameraIcon from './../assets/camera-icon.svg';
+import axios from "axios";
 
 interface ProfileFormData {
     username: string;
@@ -26,10 +27,14 @@ export const UserProfilePage = () => {
         });
     };
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         console.log('Submitting form data:', formData);
-        // Here you would typically handle form submission, like sending data to a server
+
+        await axios.put('http://localhost:3000/change_user_data', formData)
+            .catch(error => {
+                console.error('err:', error);
+            });
     };
 
     return (
@@ -38,12 +43,12 @@ export const UserProfilePage = () => {
                 <img src={logoWithoutName} alt="Logo" className="logoWithoutName" />
                 <ul>
                     <li className="settings-item"><Link to="/">Ustawienia</Link></li>
-                    <li><Link to="/edit-profile">Edycja profilu</Link></li>
+                    <li><Link to="/profile">Edycja profilu</Link></li>
                     <li><Link to="/settings">Ustawienia powiadomień</Link></li>
                     <li><Link to="/security">Bezpieczeństwo</Link></li>
                     <li><Link to="/help">Pomoc</Link></li>
                 </ul>
-            </div>
+            </div>  
             
             <hr className="separator"/>
             

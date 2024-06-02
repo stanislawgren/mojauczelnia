@@ -59,3 +59,19 @@ exports.check_in = async (req, res) => {
   delete user.password;
   res.send({ status: "OK", user: user });
 };
+
+exports.change_user_data = async (req, res) => {
+  try{
+      let isPasswordOk = login(req.email, req.currentPassword);
+      console.log("isPasswordOk:" + isPasswordOk.toString());
+      if (isPasswordOk.status == 200) {
+        let response = await authModel.change_user_data(req.username, req.email, req.newPassword);
+        res.send({ status: "OK" });
+      } else {
+        res.send({ status: "err" });
+      }
+  } catch {
+    res.send({ status: "err" });
+  }
+  
+}
