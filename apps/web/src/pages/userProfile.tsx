@@ -3,18 +3,20 @@ import { Link } from 'react-router-dom';
 import React, { useState } from 'react';
 import cameraIcon from './../assets/camera-icon.svg';
 import axios from "axios";
+import { useAuth } from "../hooks/useAuth";
 
 interface ProfileFormData {
     username: string;
-    email: string;
+    universityID: string;
     currentPassword: string;
     newPassword: string;
 }
 
 export const UserProfilePage = () => {
+    const auth = useAuth();
     const [formData, setFormData] = useState<ProfileFormData>({
         username: '',
-        email: '',
+        universityID: '',
         currentPassword: '',
         newPassword: ''
     });
@@ -30,12 +32,20 @@ export const UserProfilePage = () => {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         console.log('Submitting form data:', formData);
+        
+        const updatedFormData = {
+            ...formData,
+            email: auth.user?.email
+        };
 
-        await axios.put('http://localhost:3000/change_user_data', formData)
-            .catch(error => {
-                console.error('err:', error);
-            });
+        try {
+            const response = await axios.put('http://localhost:3000/auth/change_user_data', updatedFormData);
+            console.log('Response:', response.data);
+        } catch (error) {
+            console.error('err:', error);
+        }
     };
+    
 
     return (
         <div className="user-profile-page">
@@ -72,11 +82,11 @@ export const UserProfilePage = () => {
                         onChange={handleInputChange}
                     />
                     <input
-                        type="email"
-                        name="email"
+                        type="number"
+                        name="universityID"
                         className="main-input"
-                        placeholder="E-Mail"
-                        value={formData.email}
+                        placeholder="ID uczelni"
+                        value={formData.universityID}
                         onChange={handleInputChange}
                     />
                     <input

@@ -42,6 +42,7 @@ exports.register = async (req, res) => {
   let reg;
   try {
     reg = await authModel.register(username, email, passwordEnc);
+    reg = await authModel.registerAcademy(email);
   } catch (err) {
     res.send({ status: "err" });
   }
@@ -61,17 +62,20 @@ exports.check_in = async (req, res) => {
 };
 
 exports.change_user_data = async (req, res) => {
-  try{
-      let isPasswordOk = login(req.email, req.currentPassword);
-      console.log("isPasswordOk:" + isPasswordOk.toString());
-      if (isPasswordOk.status == 200) {
-        let response = await authModel.change_user_data(req.username, req.email, req.newPassword);
-        res.send({ status: "OK" });
-      } else {
-        res.send({ status: "err" });
-      }
-  } catch {
-    res.send({ status: "err" });
+  const { username, universityID, currentPassword, newPassword, email } = req.body;
+  const parsedUniversityID = parseInt(universityID);
+  try {
+    let user = await authModel.login(email);
+    if (!user || !bcrypt.compareSync(currentPassword, user.password)) {
+      return res.status(401).send({ status: "err", message: "INVALID_CREDENTIALS" });
+    }
+    passwordEnc = bcrypt.hashSync(newPassword, 10);
+    await authModel.change_user_data(username, passwordEnc, email);
+    await authModel.change_user_academy_data(parsedUniversityID, user.user_id);
+    res.send({ status: "OK", user: user});
+  } catch (err) {
+    console.error("Error in change_user_data:", err);
+    res.status(500).send({ status: "err", message: "SERVER_ERROR" });
   }
-  
-}
+};
+
