@@ -44,6 +44,11 @@ export const UserNav = () => {
             }}>
                 <Typography textAlign="center">Mój profil</Typography>
             </MenuItem>
+            <MenuItem onClick={() => {
+                navigate("/ranking")
+            }}>
+                <Typography textAlign="center">Ranking uczelni</Typography>
+            </MenuItem>
             <MenuItem onClick={auth.signOut}>
                 <Typography textAlign="center">Wyloguj</Typography>
             </MenuItem>
