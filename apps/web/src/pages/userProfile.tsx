@@ -2,20 +2,23 @@ import logoWithoutName from "./../assets/logoWithoutName.svg";
 import { Link } from 'react-router-dom';
 import React, { useState } from 'react';
 import cameraIcon from './../assets/camera-icon.svg';
+import axios from "axios";
+import { useAuth } from "../hooks/useAuth";
 import { UserAvatar } from "../components/placeholders/UserAvatar";
 import { Avatar } from "@mui/material";
 
 interface ProfileFormData {
     username: string;
-    email: string;
+    universityID: string;
     currentPassword: string;
     newPassword: string;
 }
 
 export const UserProfilePage = () => {
+    const auth = useAuth();
     const [formData, setFormData] = useState<ProfileFormData>({
         username: '',
-        email: '',
+        universityID: '',
         currentPassword: '',
         newPassword: ''
     });
@@ -28,11 +31,23 @@ export const UserProfilePage = () => {
         });
     };
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         console.log('Submitting form data:', formData);
-        // Here you would typically handle form submission, like sending data to a server
+        
+        const updatedFormData = {
+            ...formData,
+            email: auth.user?.email
+        };
+
+        try {
+            const response = await axios.put('http://localhost:3000/auth/change_user_data', updatedFormData);
+            console.log('Response:', response.data);
+        } catch (error) {
+            console.error('err:', error);
+        }
     };
+    
 
     return (
         <div className="user-profile-page">
@@ -40,12 +55,15 @@ export const UserProfilePage = () => {
                 <img src={logoWithoutName} alt="Logo" className="logoWithoutName" />
                 <ul>
                     <li className="settings-item"><Link to="/">Ustawienia</Link></li>
-                    <li><Link to="/edit-profile">Edycja profilu</Link></li>
+                    <li><Link to="/profile">Edycja profilu</Link></li>
                     <li><Link to="/settings">Ustawienia powiadomień</Link></li>
                     <li><Link to="/security">Bezpieczeństwo</Link></li>
                     <li><Link to="/help">Pomoc</Link></li>
                 </ul>
-            </div>
+            </div>  
+            
+            <hr className="separator"/>
+            
 
             <hr className="separator" />
 
@@ -65,11 +83,11 @@ export const UserProfilePage = () => {
                         onChange={handleInputChange}
                     />
                     <input
-                        type="email"
-                        name="email"
+                        type="number"
+                        name="universityID"
                         className="main-input"
-                        placeholder="E-Mail"
-                        value={formData.email}
+                        placeholder="ID uczelni"
+                        value={formData.universityID}
                         onChange={handleInputChange}
                     />
                     <input

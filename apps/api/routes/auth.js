@@ -10,4 +10,6 @@ router.post("/register", auth.register);
 
 router.get("/check_in", authentication.authenticateToken, auth.check_in);
 
+router.put("/change_user_data", auth.change_user_data);
+
 module.exports = router;

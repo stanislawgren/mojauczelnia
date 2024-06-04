@@ -45,6 +45,7 @@ exports.register = async (req, res) => {
   let reg;
   try {
     reg = await authModel.register(username, email, passwordEnc);
+    reg = await authModel.registerAcademy(email);
   } catch (err) {
     res.send({ status: "err" });
   }
@@ -63,3 +64,22 @@ exports.check_in = async (req, res) => {
   delete user.password;
   res.send({ status: "OK", user: { ...user, academy_id: userUniversity?.academy_id } });
 };
+
+exports.change_user_data = async (req, res) => {
+  const { username, universityID, currentPassword, newPassword, email } = req.body;
+  const parsedUniversityID = parseInt(universityID);
+  try {
+    let user = await authModel.login(email);
+    if (!user || !bcrypt.compareSync(currentPassword, user.password)) {
+      return res.status(401).send({ status: "err", message: "INVALID_CREDENTIALS" });
+    }
+    passwordEnc = bcrypt.hashSync(newPassword, 10);
+    await authModel.change_user_data(username, passwordEnc, email);
+    await authModel.change_user_academy_data(parsedUniversityID, user.user_id);
+    res.send({ status: "OK", user: user});
+  } catch (err) {
+    console.error("Error in change_user_data:", err);
+    res.status(500).send({ status: "err", message: "SERVER_ERROR" });
+  }
+};
+
