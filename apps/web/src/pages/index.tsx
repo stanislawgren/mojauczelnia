@@ -57,7 +57,10 @@ export const MainPage = () => {
 
   const debouncedFilters = useDebounce<IFilters>(filters, 500);
 
-  const handleFiltersChange = (name: string, newRoles: string[] | string | null) => {
+  const handleFiltersChange = (
+    name: string,
+    newRoles: string[] | string | null
+  ) => {
     setFilters((prevState) => ({
       ...prevState,
       [name]: newRoles,
@@ -71,7 +74,8 @@ export const MainPage = () => {
   const handleAcademies = async () => {
     const res = await getAcademies(filters);
     console.log(res);
-    setAcademies(res);
+    //@ts-ignore
+    setAcademies(res.academies);
   };
 
   useEffect(() => {
@@ -84,11 +88,7 @@ export const MainPage = () => {
       <div className="background-photo"></div>
       <div className="main-page__navbar">
         <div className="main-page__navbar-container">
-          <img
-            src={logo}
-            alt="logo"
-            style={{ marginLeft: '-40px' }}
-          />
+          <img src={logo} alt="logo" style={{ marginLeft: "-40px" }} />
 
           <div className="university-page__navbar__buttons">
             {auth.token ? (
@@ -108,43 +108,58 @@ export const MainPage = () => {
         </div>
       </div>
       <div className="main-page__container">
-        <div className="main-page__container-search-bar">
-          <MultiAutocomplete
-            values={filters.cities}
-            options={cities}
-            stateKey={"cities"}
-            handleChange={handleFiltersChange}
-            multiple
-          />
-          <input
-            type="text"
-            className="main-input"
-            placeholder="Szkoła"
-            name="schools"
-            value={filters.schools}
-            onChange={handleInputChange}
-          />
-          <button className="icon-button">
-            <span className="material-icons" style={{ fontSize: "24px" }}>
-              search
-            </span>
-          </button>
+        <div className="main-page__container-search">
+          <div className="main-page__container-search-bar">
+            <MultiAutocomplete
+              values={filters.cities}
+              options={cities}
+              stateKey={"cities"}
+              handleChange={handleFiltersChange}
+              multiple
+            />
+            <input
+              type="text"
+              className="main-input"
+              placeholder="Szkoła"
+              name="schools"
+              value={filters.schools}
+              onChange={handleInputChange}
+            />
+            <button className="icon-button">
+              <span className="material-icons" style={{ fontSize: "24px" }}>
+                search
+              </span>
+            </button>
+          </div>
+          <div className="main-page__container-search-bar-items">
+            {academies.map((academy, index) => {
+              return (
+                <a
+                  className="main-page__container-search-bar-item"
+                  key={index}
+                  href={`/university/${academy.academy_id}`}
+                >
+                  {academy.academy_name}
+                </a>
+              );
+            })}
+          </div>
         </div>
         <section className="news">
           <NewsCard
-            title='​Dlaczego studenci UAM wybrali UAM?'
+            title="​Dlaczego studenci UAM wybrali UAM?"
             text="Poznajcie opinie studentów UAM i dowiedzcie się, dlaczego wybrali studia na Uniwersytecie im. Adama Mickiewicza w Poznaniu."
             date="Październik 14, 2024"
             img="https://t4.ftcdn.net/jpg/04/24/15/27/360_F_424152729_5jNBK6XVjsoWvTtGEljfSCOWv4Taqivl.jpg"
           />
           <NewsCard
-            title='​XXVII edycja Poznańskiego Festiwalu Nauki i Sztuki'
+            title="​XXVII edycja Poznańskiego Festiwalu Nauki i Sztuki"
             text="W dniach 15-20 kwietnia 2024 roku odbędzie się Poznański Festiwal Nauki i Sztuki. Wiodące poznańskie ośrodki akademickie i naukowe zaproszą gości w ka..."
             date="Kwiecień 5, 2024"
             img="https://puls.edu.pl/sites/default/files/styles/large/public/event/640x440_2_0.png?itok=bwX69XxN"
           />
           <NewsCard
-            title='Dzień Otwarty UWM - SpotkajMY się w Kortowie'
+            title="Dzień Otwarty UWM - SpotkajMY się w Kortowie"
             text="Uniwersytet Warmińsko-Mazurski w Olsztynie zaprasza na Dzień Otwarty 11 kwietnia 2024 roku. Szczegóły wydarzenia poniżej w treści artykułu."
             date="Maj 3, 2024"
             img="https://uwm.edu.pl/sites/default/files/styles/slider_image/public/2023-11/uwm_slider_2.jpg?itok=FdLIkeTJ"
