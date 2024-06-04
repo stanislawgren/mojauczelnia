@@ -13,6 +13,7 @@ app.use(bodyParser.json());
 const authRoute = require("./routes/auth");
 const searchRoute = require("./routes/search");
 const universityRoute = require("./routes/university");
+const reviewsRoute = require("./routes/review");
 
 app.listen(port, () => {
   console.log(`Moja Uczelnia API is live on port: ${port}`);
@@ -21,6 +22,7 @@ app.listen(port, () => {
 app.use("/auth", authRoute);
 app.use("/search", searchRoute);
 app.use("/university", universityRoute);
+app.use("/review", reviewsRoute);
 
 let sql = require("./db.js");
 
