@@ -4,8 +4,9 @@
     width: 100%;
     max-width: 1440px;
     z-index: 1;
-    padding: 440px 30px 30px 30px;
+    padding: 20px 30px 30px 30px;
     align-items: center;
+    gap: 20px
 }
 
 .main-page__navbar {
@@ -42,4 +43,16 @@
     padding: 30px;
     box-sizing: border-box;
     align-items: stretch;
+}
+
+section.news {
+    display: flex;
+    gap: 15px;
+    width: 100%;
+    justify-content: space-between;
+    max-width: 1100px;
+
+    .MuiPaper-root {
+        border-radius: 10px;
+    }
 }
