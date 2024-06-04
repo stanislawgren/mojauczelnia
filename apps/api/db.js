@@ -1,8 +1,6 @@
 const mysql = require("mysql");
 require("dotenv").config();
 
-console.log(process.env.DB_HOST);
-
 let connection = mysql.createConnection({
   host: process.env.DB_HOST,
   port: 3336,
