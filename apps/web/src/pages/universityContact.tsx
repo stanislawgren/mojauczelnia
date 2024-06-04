@@ -15,10 +15,12 @@ export const UniversityContactPage = () => {
             <div className="university-page">
                 <div className="university-page__navbar">
                     <div className="university-page__navbar-container">
+                        <Link to="/">
                         <img
                             src={logo}
                             alt="logo"
                         />
+                        </Link>
 
                         <div className="university-page__navbar__buttons">
                             {auth.token ? (

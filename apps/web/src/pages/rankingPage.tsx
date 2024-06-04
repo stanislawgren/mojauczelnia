@@ -12,7 +12,9 @@ export const RankingPage = () => {
             <div className="background-photo"></div>
             <div className="main-page__navbar">
                 <div className="main-page__navbar-container">
-                    <img src={logo} alt="logo" style={{ marginLeft: "-40px" }} />
+                    <Link to="/">
+                        <img src={logo} alt="logo" style={{ marginLeft: "-40px" }} />
+                    </Link>
 
                     <div className="university-page__navbar__buttons">
                         {auth.token ? (

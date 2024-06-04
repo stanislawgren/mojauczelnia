@@ -101,7 +101,11 @@ export const UserProfilePage = () => {
     return (
         <div className="user-profile-page">
             <div className="sidebar">
+
+                <Link to="/">
                 <img src={logoWithoutName} alt="Logo" className="logoWithoutName" />
+                </Link>
+
                 <ul>
                     <li className="settings-item"><Link to="/">Ustawienia</Link></li>
                     <li><Link to="/profile">Edycja profilu</Link></li>
