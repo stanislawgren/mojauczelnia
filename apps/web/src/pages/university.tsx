@@ -4,8 +4,11 @@ import universitylogo from "./../assets/university_logo.png";
 import tilePlaceholder from "./../assets/tile_placeholder.webp";
 import { Link, useOutletContext } from 'react-router-dom';
 import { IUniversity } from "../interfaces/IUniversity";
+import { UserNav } from "../components/UserNav";
+import { useAuth } from "../hooks/useAuth";
 
 export const UniversityPage = () => {
+    const auth = useAuth()
     const universityObj = useOutletContext<IUniversity>()
 
     return (
@@ -19,13 +22,19 @@ export const UniversityPage = () => {
                         />
 
                         <div className="university-page__navbar__buttons">
-                            <Link to="/login" className="main-button" style={{}}>
-                                Zaloguj się
-                            </Link>
-                            <Link to="/register" className="main-button" style={{}}>
-                                Zarejestruj się
-                            </Link>
-
+                            {auth.token ? (
+                                <UserNav />
+                            ) : (
+                                <>
+                                    <Link to="/login" className="main-button" style={{}}>
+                                        Zaloguj się
+                                    </Link>
+                                    <div style={{ width: "20px" }}></div>
+                                    <Link to="/register" className="main-button" style={{}}>
+                                        Zarejestruj się
+                                    </Link>
+                                </>
+                            )}
                         </div>
                     </div>
                 </div>

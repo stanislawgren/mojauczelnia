@@ -31,7 +31,11 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
             <Route path="recruitment" element={<UniversityRecruitmentPage />} />
           </Route>
           <Route path="/pagination" element={<ExamplePaginationPage />} />
-          <Route path="/profile" element={<UserProfilePage />} />
+          <Route path="/profile" element={
+            <RequireAuth>
+              <UserProfilePage />
+            </RequireAuth>
+          } />
           <Route path="/example" element={
             <RequireAuth>
               <RegisterPage />
