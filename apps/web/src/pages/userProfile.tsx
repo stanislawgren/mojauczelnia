@@ -1,17 +1,21 @@
 import logoWithoutName from "./../assets/logoWithoutName.svg";
 import { Link } from 'react-router-dom';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import cameraIcon from './../assets/camera-icon.svg';
 import axios from "axios";
 import { useAuth } from "../hooks/useAuth";
 import { UserAvatar } from "../components/placeholders/UserAvatar";
 import { Avatar } from "@mui/material";
+import { MultiAutocomplete } from "../Facade/MultiAutocomplete";
+import { getAcademies, getAllAcademies } from "../services/searchService";
+import { IAcademy } from ".";
 
 interface ProfileFormData {
     username: string;
     universityID: string;
     currentPassword: string;
-    newPassword: string;
+    newPassword?: string;
+    universityName: string | null;
 }
 
 export const UserProfilePage = () => {
@@ -20,8 +24,10 @@ export const UserProfilePage = () => {
         username: '',
         universityID: '',
         currentPassword: '',
-        newPassword: ''
+        newPassword: '',
+        universityName: null
     });
+    const [academies, setAcademies] = useState<IAcademy[]>([]);
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -34,11 +40,16 @@ export const UserProfilePage = () => {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         console.log('Submitting form data:', formData);
-        
+
         const updatedFormData = {
             ...formData,
+            universityID: academies.find(a=>a.academy_name === formData.universityName)?.academy_id,
             email: auth.user?.email
         };
+
+        if (!updatedFormData.newPassword || updatedFormData.newPassword === '') {
+            delete updatedFormData.newPassword
+        } 
 
         try {
             const response = await axios.put('http://localhost:3000/auth/change_user_data', updatedFormData);
@@ -47,8 +58,46 @@ export const UserProfilePage = () => {
             console.error('err:', error);
         }
     };
-    
 
+    const handleStateChange = (name: string, newValue: string[] | string | null) => {
+        console.log(name, newValue);
+        setFormData((prevState) => ({
+            ...prevState,
+            [name]: newValue,
+        }));
+    };
+
+    const getAcademies = async () => {
+        const res = await getAllAcademies({schools: '', cities: []}) as {academies?: IAcademy[]};
+
+        if (res.academies) {
+            setAcademies(res.academies);
+          }
+      };
+    
+      useEffect(() => {
+        getAcademies();
+      }, []);
+
+      const academiesNames = academies.reduce((acc, a) => {
+        acc.push(a.academy_name);
+        return acc;
+    }, [] as string[]);
+
+    useEffect(() => {
+        const a = academies.find((a) => a.academy_id === auth.user?.academy_id)?.academy_name
+        a ? handleStateChange('universityName', a!) : null
+    }, [academies, auth.user])
+
+    useEffect(() => {
+        if (auth.user) {
+            setFormData((prevState) => ({
+                ...prevState,
+                username: auth.user!.user_name
+            }));
+        }
+      }, [auth.user]);
+    
     return (
         <div className="user-profile-page">
             <div className="sidebar">
@@ -60,13 +109,9 @@ export const UserProfilePage = () => {
                     <li><Link to="/security">Bezpieczeństwo</Link></li>
                     <li><Link to="/help">Pomoc</Link></li>
                 </ul>
-            </div>  
-            
-            <hr className="separator"/>
-            
+            </div>
 
             <hr className="separator" />
-
 
             <div className="form-container">
                 <div className="profile-photo-container">
@@ -82,13 +127,12 @@ export const UserProfilePage = () => {
                         value={formData.username}
                         onChange={handleInputChange}
                     />
-                    <input
-                        type="number"
-                        name="universityID"
-                        className="main-input"
-                        placeholder="ID uczelni"
-                        value={formData.universityID}
-                        onChange={handleInputChange}
+                    <MultiAutocomplete
+                        values={formData.universityName}
+                        options={academiesNames}
+                        stateKey={"universityName"}
+                        handleChange={handleStateChange}
+                        multiple={false}
                     />
                     <input
                         type="password"
