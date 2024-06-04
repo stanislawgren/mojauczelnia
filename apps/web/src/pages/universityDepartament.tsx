@@ -10,10 +10,12 @@ export const UniversityDepartamentPage = () => {
             <div className="university-page">  
                 <div className="university-page__navbar">
                     <div className="university-page__navbar-container">
+                        <Link to="/">
                     <img
                         src={logo}
                         alt="logo"
                     />
+                    </Link>
 
                     <div className="university-page__navbar__buttons">
                         <Link to="/login" className="main-button" style={{  }}>
