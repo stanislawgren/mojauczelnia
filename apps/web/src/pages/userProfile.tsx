@@ -4,6 +4,8 @@ import React, { useState } from 'react';
 import cameraIcon from './../assets/camera-icon.svg';
 import axios from "axios";
 import { useAuth } from "../hooks/useAuth";
+import { UserAvatar } from "../components/placeholders/UserAvatar";
+import { Avatar } from "@mui/material";
 
 interface ProfileFormData {
     username: string;
@@ -63,13 +65,12 @@ export const UserProfilePage = () => {
             <hr className="separator"/>
             
 
-            <div className="form-container">
-                <h1>Edytuj profil</h1>
+            <hr className="separator" />
 
+
+            <div className="form-container">
                 <div className="profile-photo-container">
-                    <button className="edit-photo-button">
-                        <img src={cameraIcon} alt="Edytuj zdjęcie" />
-                    </button>
+                    <Avatar alt="Remy Sharp" src="https://avatar.iran.liara.run/public/boy?username=Ash" sx={{ width: 120, height: 120 }} />
                 </div>
 
                 <form onSubmit={handleSubmit}>

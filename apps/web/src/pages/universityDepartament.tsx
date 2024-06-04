@@ -1,28 +1,40 @@
+import { UserNav } from "../components/UserNav";
+import { useAuth } from "../hooks/useAuth";
+import { IUniversity } from "../interfaces/IUniversity";
 import logo from "./../assets/logo.svg";
 import university from "./../assets/university.jpg";
 import universitylogo from "./../assets/university_logo.png";
 import { useState } from "react";
-import { Link } from 'react-router-dom';
+import { Link, useOutletContext, useParams } from 'react-router-dom';
 
 export const UniversityDepartamentPage = () => {
+    const auth = useAuth()
+    const universityObj = useOutletContext<IUniversity>()
+
     return (
-        <div className="app-container"> 
-            <div className="university-page">  
+        <div className="app-container">
+            <div className="university-page">
                 <div className="university-page__navbar">
                     <div className="university-page__navbar-container">
-                    <img
-                        src={logo}
-                        alt="logo"
-                    />
+                        <img
+                            src={logo}
+                            alt="logo"
+                        />
 
-                    <div className="university-page__navbar__buttons">
-                        <Link to="/login" className="main-button" style={{  }}>
-                            Zaloguj się
-                        </Link>
-                        <Link to="/register" className="main-button" style={{  }}>
-                            Zarejestruj się
-                        </Link>
-                        
+                        <div className="university-page__navbar__buttons">
+                            {auth.token ? (
+                                <UserNav />
+                            ) : (
+                                <>
+                                    <Link to="/login" className="main-button" style={{}}>
+                                        Zaloguj się
+                                    </Link>
+                                    <div style={{ width: "20px" }}></div>
+                                    <Link to="/register" className="main-button" style={{}}>
+                                        Zarejestruj się
+                                    </Link>
+                                </>
+                            )}
                         </div>
                     </div>
                 </div>
@@ -31,15 +43,15 @@ export const UniversityDepartamentPage = () => {
                     <div className="university-page__hero-section__title">
                         <img className="university-page__hero-section__title__logo" src={universitylogo} />
                         <h1 className="university-page__hero-section__title__text">
-                            <Link to="/university">Politechnika Krakowska im. <br></br>Tadeusza Kościuszki</Link>
+                            <Link to={`/university/${universityObj.academy_id}`}>{universityObj.academy_name}</Link>
                         </h1>
                     </div>
                 </div>
                 <div className="university-page__main">
                     <div className="university-page__main__nav">
-                        <Link to="/universityOpinions" className="university-page__main__nav__button">Opinie o uczelni (18)</Link>
-                        <Link to="/universityContact" className="university-page__main__nav__button">Kontakt</Link>
-                        <Link to="/universityRecruitment" className="university-page__main__nav__button">Rekrutacja</Link>
+                        <Link to="../opinions" className="university-page__main__nav__button">Opinie o uczelni (18)</Link>
+                        <Link to="../contact" className="university-page__main__nav__button">Kontakt</Link>
+                        <a href={universityObj.recrutment} target="_blank" className="university-page__main__nav__button">Rekrutacja</a>
                     </div>
                     <div className="university-page__main__content">
                         <h2 className="university-page__main__content__title university-page__main__content__title--blue">Wydział Politechniki Krakowskiej</h2>
@@ -66,7 +78,7 @@ export const UniversityDepartamentPage = () => {
                         </div>
                     </div>
                 </div>
-            </div> 
+            </div>
         </div>
     );
 };

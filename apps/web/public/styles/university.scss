@@ -5,6 +5,66 @@
         box-sizing: border-box;
     }
 
+    &__review__form {
+        border-radius: 25px;
+        border: 1px solid white;
+        width: 100%;
+        height: fit-content;
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+        box-sizing: border-box;
+        gap: 20px;
+        align-items: flex-start;
+
+        textarea {
+            background-color: transparent;
+            min-height: 200px;
+            border: unset;
+            font-family: "Poppins";
+            font-size: 20px;
+            color: white;
+
+            &:focus {
+                outline: none !important;
+                border: none !important;
+            }
+            width: 100%;
+        }
+
+        &-header {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            justify-content: space-between;
+
+            button {
+                border: 3px solid white;
+                background-color: transparent;
+                font-size: 20px;
+                color: white;
+                padding: 0px 50px 0px 50px;
+                border-radius: 40px;
+                cursor: pointer;
+            }
+        }
+
+        &-profile {
+            display: flex;
+            width: fit-content;
+            height: fit-content;
+            flex-direction: row;
+            align-items: center;
+            gap: 15px;
+            font-size: 30px;
+
+            p {
+                padding: 0;
+                margin: 0;
+            }
+        }
+    }
+
     &__navbar {
         position: relative;
         width: 100%;
@@ -23,7 +83,6 @@
         &__buttons {
             display: flex;
             align-items: center;
-            gap: 20px;
         }
     }
 
@@ -36,13 +95,19 @@
         justify-content: center;
 
         &::before {
-            content: '';
+            content: "";
             position: absolute;
             height: 100%;
             width: 100%;
             z-index: 1;
-            background: linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0.8) 24.6%, rgba(0, 0, 0, 0.6) 40.6%, rgba(0, 0, 0, 0.25) 74.1%);
-            opacity: .7;
+            background: linear-gradient(
+                180deg,
+                #000000 0%,
+                rgba(0, 0, 0, 0.8) 24.6%,
+                rgba(0, 0, 0, 0.6) 40.6%,
+                rgba(0, 0, 0, 0.25) 74.1%
+            );
+            opacity: 0.7;
         }
 
         &__background {
@@ -62,9 +127,9 @@
             align-items: center;
             gap: 30px;
 
-            &__text {   
+            &__text {
                 font-size: 45px;
-                color: #FFF;
+                color: #fff;
                 text-decoration: none;
 
                 a {
@@ -94,7 +159,7 @@
 
             &__button {
                 width: calc(33.3% - 20px);
-                background-color: #FFF;
+                background-color: #fff;
                 border: 4px solid $blue;
                 font-size: 29px;
                 font-weight: 600;
@@ -103,12 +168,14 @@
                 border-radius: 50px;
                 padding: 10px;
                 cursor: pointer;
-                transition: color .2s, background-color .2s;
+                transition:
+                    color 0.2s,
+                    background-color 0.2s;
                 text-align: center;
                 text-decoration: none;
 
                 &:hover {
-                    color: #FFF;
+                    color: #fff;
                     background-color: $blue;
                 }
             }
@@ -157,7 +224,7 @@
                         left: 0;
                         width: 100%;
                         padding: 20px;
-                        background-color: #FFF;
+                        background-color: #fff;
                         color: #000;
                         font-size: 26px;
                         text-align: center;
@@ -176,12 +243,13 @@
                     }
                 }
 
-                p, ul {
+                p,
+                ul {
                     font-size: 30px;
                 }
 
                 a {
-                    color: #FFF;
+                    color: #fff;
                 }
             }
 
@@ -212,7 +280,7 @@
                         }
 
                         &__text {
-                            color: #FFF;
+                            color: #fff;
                             font-size: 30px;
                             text-decoration: none;
 

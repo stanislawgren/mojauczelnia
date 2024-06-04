@@ -3,4 +3,5 @@ interface IUser {
     email: string
     user_name: string
     avatar?: string
+    academy_id?: number
 }
