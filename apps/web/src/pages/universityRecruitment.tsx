@@ -34,13 +34,13 @@ export const UniversityRecruitmentPage = () => {
                     <div className="university-page__hero-section__title">
                         <img className="university-page__hero-section__title__logo" src={universitylogo} />
                         <h1 className="university-page__hero-section__title__text">
-                            <Link to={`/university/${universityObj.id}`}>Politechnika Krakowska im. <br></br>Tadeusza Kościuszki</Link>
+                            <Link to={`/university/${universityObj.academy_id}`}>Politechnika Krakowska im. <br></br>Tadeusza Kościuszki</Link>
                         </h1>
                     </div>
                 </div>
                 <div className="university-page__main">
                     <div className="university-page__main__nav">
-                        <Link to="../opinions" className="university-page__main__nav__button">Opinie o uczelni (18)</Link>
+                        <Link to="../opinions" className="university-page__main__nav__button">Opinie o uczelni</Link>
                         <Link to="../contact" className="university-page__main__nav__button">Kontakt</Link>
                         <Link to="../recruitment" className="university-page__main__nav__button">Rekrutacja</Link>
                     </div>

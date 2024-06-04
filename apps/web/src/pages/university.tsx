@@ -49,7 +49,7 @@ export const UniversityPage = () => {
                 </div>
                 <div className="university-page__main">
                     <div className="university-page__main__nav">
-                        <Link to="opinions" className="university-page__main__nav__button">Opinie o uczelni (18)</Link>
+                        <Link to="opinions" className="university-page__main__nav__button">Opinie o uczelni</Link>
                         <Link to="contact" className="university-page__main__nav__button">Kontakt</Link>
                         <a href={universityObj.recrutment} target="_blank" className="university-page__main__nav__button">Rekrutacja</a>
                     </div>

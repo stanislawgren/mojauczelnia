@@ -98,7 +98,7 @@ export const UniversityOpinionsPage = () => {
               to="../opinions"
               className="university-page__main__nav__button"
             >
-              Opinie o uczelni (18)
+              Opinie o uczelni
             </Link>
             <Link
               to="../contact"
