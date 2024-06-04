@@ -14,6 +14,7 @@ import { RequireAuth } from "./components/RequireAuth";
 import { ExamplePaginationPage } from "./pages/_example_pagination.tsx";
 import { UserProfilePage } from "./pages/userProfile.tsx";
 import { UniversityRoot } from "./pages/universityRoot.tsx";
+import { UniversityOpinionsPage } from "./pages/universityOpinions.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
@@ -23,20 +24,26 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
           <Route path="/" element={<MainPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
-          <Route path="/university/:universityId" element={<UniversityRoot />} >
-            <Route path={''} element={<UniversityPage />} />
-            <Route path="departament/:departamentId" element={<UniversityDepartamentPage />} />
-            <Route path="opinions" element={<UniversityDepartamentPage />} />
+          <Route path="/university/:universityId" element={<UniversityRoot />}>
+            <Route path={""} element={<UniversityPage />} />
+            <Route
+              path="departament/:departamentId"
+              element={<UniversityDepartamentPage />}
+            />
+            <Route path="opinions" element={<UniversityOpinionsPage />} />
             <Route path="contact" element={<UniversityContactPage />} />
             <Route path="recruitment" element={<UniversityRecruitmentPage />} />
           </Route>
           <Route path="/pagination" element={<ExamplePaginationPage />} />
           <Route path="/profile" element={<UserProfilePage />} />
-          <Route path="/example" element={
-            <RequireAuth>
-              <RegisterPage />
-            </RequireAuth>
-          } />
+          <Route
+            path="/example"
+            element={
+              <RequireAuth>
+                <RegisterPage />
+              </RequireAuth>
+            }
+          />
         </Routes>
       </AuthProvider>
     </BrowserRouter>

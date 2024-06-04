@@ -2,8 +2,7 @@ import { IUniversity } from "../interfaces/IUniversity";
 import logo from "./../assets/logo.svg";
 import university from "./../assets/university.jpg";
 import universitylogo from "./../assets/university_logo.png";
-import { useState } from "react";
-import { Link, useOutletContext, useParams } from 'react-router-dom';
+import { Link, useOutletContext } from 'react-router-dom';
 
 export const UniversityContactPage = () => {
     const universityObj = useOutletContext<IUniversity>()
