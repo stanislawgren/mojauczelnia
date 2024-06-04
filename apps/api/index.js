@@ -11,12 +11,14 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 const authRoute = require("./routes/auth");
+const searchRoute = require("./routes/search");
 
 app.listen(port, () => {
   console.log(`Moja Uczelnia API is live on port: ${port}`);
 });
 
 app.use("/auth", authRoute);
+app.use("/search", searchRoute);
 
 let sql = require("./db.js");
 
