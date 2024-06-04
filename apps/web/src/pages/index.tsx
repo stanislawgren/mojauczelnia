@@ -91,19 +91,21 @@ export const MainPage = () => {
             style={{ marginLeft: '-40px' }}
           />
 
-          {auth.token ? (
-            <UserNav />
-          ) : (
-            <>
-              <Link to="/login" className="main-button" style={{}}>
-                Zaloguj się
-              </Link>
-              <div style={{ width: "20px" }}></div>
-              <Link to="/register" className="main-button" style={{}}>
-                Zarejestruj się
-              </Link>
-            </>
-          )}
+          <div className="university-page__navbar__buttons">
+            {auth.token ? (
+              <UserNav />
+            ) : (
+              <>
+                <Link to="/login" className="main-button" style={{}}>
+                  Zaloguj się
+                </Link>
+                <div style={{ width: "20px" }}></div>
+                <Link to="/register" className="main-button" style={{}}>
+                  Zarejestruj się
+                </Link>
+              </>
+            )}
+          </div>
         </div>
       </div>
       <div className="main-page__container">
