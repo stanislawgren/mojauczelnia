@@ -1,3 +1,4 @@
+import { ReviewItem } from "../components/ReviewItem";
 import StarRating from "../components/Stars";
 import { UserNav } from "../components/UserNav";
 import { useAuth } from "../hooks/useAuth";
@@ -19,7 +20,9 @@ export const UniversityOpinionsPage = () => {
   const handleReviewsGet = async () => {
     let res = await getReviews(universityObj.academy_id);
 
-    console.log(res);
+    if (res?.reviews) {
+      setReviews(res.reviews);
+    }
   };
 
   useEffect(() => {
@@ -123,7 +126,7 @@ export const UniversityOpinionsPage = () => {
                 <div className="university-page__review__form-header">
                   <div className="university-page__review__form-profile">
                     <img
-                      src="https://www.w3schools.com/howto/img_avatar.png"
+                      src="https://avatar.iran.liara.run/public/boy?username=Ash"
                       alt="av"
                       className="avatar"
                     />
@@ -150,6 +153,9 @@ export const UniversityOpinionsPage = () => {
                 </div>
               </div>
             )}
+            {reviews.map((review: any, index: any) => {
+              return <ReviewItem key={index} review={review} />;
+            })}
           </div>
         </div>
       </div>
