@@ -1,7 +1,8 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const authModel = require("../models/auth.model");
-const {signJwt} = require("../jwt/actions");
+const universityModel = require("../models/university.model");
+const { signJwt } = require("../jwt/actions");
 
 exports.login = async (req, res) => {
   const { email, password } = req.body;
@@ -30,7 +31,9 @@ exports.login = async (req, res) => {
     return;
   }
 
-  res.status(200).send({ status: "OK", token: token, user: result });
+  let userUniversity = await universityModel.getUserAcademyId(result.user_id)
+
+  res.status(200).send({ status: "OK", token: token, user: { ...result, academy_id: userUniversity?.academy_id } });
 };
 
 exports.register = async (req, res) => {
@@ -56,6 +59,7 @@ exports.register = async (req, res) => {
 
 exports.check_in = async (req, res) => {
   let user = await authModel.login(req.user.email)
+  let userUniversity = await universityModel.getUserAcademyId(user.user_id)
   delete user.password;
-  res.send({ status: "OK", user: user });
+  res.send({ status: "OK", user: { ...user, academy_id: userUniversity?.academy_id } });
 };
