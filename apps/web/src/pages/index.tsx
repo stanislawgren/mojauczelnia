@@ -8,6 +8,7 @@ import { MultiAutocomplete } from "../Facade/MultiAutocomplete.tsx";
 import useDebounce from "../hooks/useDebounce.tsx";
 import { getAcademies, getCitiesFromDb } from "../services/searchService.tsx";
 import { AxiosError } from "axios";
+import { UserNav } from "../components/UserNav.tsx";
 
 export interface IFilters {
   search: string;
@@ -87,21 +88,11 @@ export const MainPage = () => {
           <img
             src={logo}
             alt="logo"
-            style={{ position: "absolute", left: "-20px" }}
+            style={{ marginLeft: '-40px' }}
           />
 
           {auth.token ? (
-            <>
-              <span
-                className="main-button"
-                style={{}}
-                onClick={() => {
-                  auth.signOut();
-                }}
-              >
-                Wyloguj (przykład)
-              </span>
-            </>
+            <UserNav />
           ) : (
             <>
               <Link to="/login" className="main-button" style={{}}>

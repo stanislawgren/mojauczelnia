@@ -1,3 +1,5 @@
+import { UserNav } from "../components/UserNav";
+import { useAuth } from "../hooks/useAuth";
 import { IUniversity } from "../interfaces/IUniversity";
 import logo from "./../assets/logo.svg";
 import university from "./../assets/university.jpg";
@@ -5,6 +7,7 @@ import universitylogo from "./../assets/university_logo.png";
 import { Link, useOutletContext } from 'react-router-dom';
 
 export const UniversityContactPage = () => {
+    const auth = useAuth()
     const universityObj = useOutletContext<IUniversity>()
 
     return (
@@ -18,13 +21,19 @@ export const UniversityContactPage = () => {
                         />
 
                         <div className="university-page__navbar__buttons">
-                            <Link to="/login" className="main-button" style={{}}>
-                                Zaloguj się
-                            </Link>
-                            <Link to="/register" className="main-button" style={{}}>
-                                Zarejestruj się
-                            </Link>
-
+                            {auth.token ? (
+                                <UserNav />
+                            ) : (
+                                <>
+                                    <Link to="/login" className="main-button" style={{}}>
+                                        Zaloguj się
+                                    </Link>
+                                    <div style={{ width: "20px" }}></div>
+                                    <Link to="/register" className="main-button" style={{}}>
+                                        Zarejestruj się
+                                    </Link>
+                                </>
+                            )}
                         </div>
                     </div>
                 </div>
