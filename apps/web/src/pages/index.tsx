@@ -2,13 +2,12 @@ import { useAuth } from "../hooks/useAuth";
 import logo from "./../assets/logo.svg";
 import { Link, useSearchParams } from "react-router-dom";
 import { ChangeEvent, useEffect, useState } from "react";
-
-import { EX_CITIES } from "../exampleData.ts";
 import { MultiAutocomplete } from "../Facade/MultiAutocomplete.tsx";
 import useDebounce from "../hooks/useDebounce.tsx";
 import { getAcademies, getCitiesFromDb } from "../services/searchService.tsx";
 import { AxiosError } from "axios";
 import { UserNav } from "../components/UserNav.tsx";
+import { NewsCard } from "../components/NewsCard.tsx";
 
 export interface IFilters {
   search: string;
@@ -131,6 +130,26 @@ export const MainPage = () => {
             </span>
           </button>
         </div>
+        <section className="news">
+          <NewsCard
+            title='​Dlaczego studenci UAM wybrali UAM?'
+            text="Poznajcie opinie studentów UAM i dowiedzcie się, dlaczego wybrali studia na Uniwersytecie im. Adama Mickiewicza w Poznaniu."
+            date="Październik 14, 2024"
+            img="https://t4.ftcdn.net/jpg/04/24/15/27/360_F_424152729_5jNBK6XVjsoWvTtGEljfSCOWv4Taqivl.jpg"
+          />
+          <NewsCard
+            title='​XXVII edycja Poznańskiego Festiwalu Nauki i Sztuki'
+            text="W dniach 15-20 kwietnia 2024 roku odbędzie się Poznański Festiwal Nauki i Sztuki. Wiodące poznańskie ośrodki akademickie i naukowe zaproszą gości w ka..."
+            date="Kwiecień 5, 2024"
+            img="https://puls.edu.pl/sites/default/files/styles/large/public/event/640x440_2_0.png?itok=bwX69XxN"
+          />
+          <NewsCard
+            title='Dzień Otwarty UWM - SpotkajMY się w Kortowie'
+            text="Uniwersytet Warmińsko-Mazurski w Olsztynie zaprasza na Dzień Otwarty 11 kwietnia 2024 roku. Szczegóły wydarzenia poniżej w treści artykułu."
+            date="Maj 3, 2024"
+            img="https://uwm.edu.pl/sites/default/files/styles/slider_image/public/2023-11/uwm_slider_2.jpg?itok=FdLIkeTJ"
+          />
+        </section>
       </div>
     </div>
   );
