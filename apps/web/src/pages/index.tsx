@@ -58,7 +58,7 @@ export const MainPage = () => {
 
   const debouncedFilters = useDebounce<IFilters>(filters, 500);
 
-  const handleFiltersChange = (name: string, newRoles: string[] | string) => {
+  const handleFiltersChange = (name: string, newRoles: string[] | string | null) => {
     setFilters((prevState) => ({
       ...prevState,
       [name]: newRoles,
@@ -115,6 +115,7 @@ export const MainPage = () => {
             options={cities}
             stateKey={"cities"}
             handleChange={handleFiltersChange}
+            multiple
           />
           <input
             type="text"

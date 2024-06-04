@@ -1,15 +1,16 @@
 import {Autocomplete, Chip, TextField} from "@mui/material";
 
 interface Props {
-  values: string[],
+  values: string[] | string | null,
   options: string[],
   stateKey: string,
-  handleChange: (stateKey: string, newValue: string[]) => void,
+  handleChange: (stateKey: string, newValue: string[] | string | null) => void,
+  multiple: boolean
 }
 
 export const MultiAutocomplete = (props: Props) => {
   return <Autocomplete
-    multiple
+    multiple={props.multiple}
     limitTags={1}
     options={props.options}
     value={props.values}

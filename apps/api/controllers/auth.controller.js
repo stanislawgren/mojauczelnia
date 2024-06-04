@@ -73,7 +73,7 @@ exports.change_user_data = async (req, res) => {
     if (!user || !bcrypt.compareSync(currentPassword, user.password)) {
       return res.status(401).send({ status: "err", message: "INVALID_CREDENTIALS" });
     }
-    passwordEnc = bcrypt.hashSync(newPassword, 10);
+    passwordEnc = newPassword ? bcrypt.hashSync(newPassword, 10) : user.password;
     await authModel.change_user_data(username, passwordEnc, email);
     await authModel.change_user_academy_data(parsedUniversityID, user.user_id);
     res.send({ status: "OK", user: user});

@@ -27,3 +27,17 @@ exports.academies = async (req, res) => {
 
   res.status(200).send({ status: "OK", academies: result });
 };
+
+exports.allAcademies = async (req, res) => {
+  const { schools, cities } = req.query;
+
+  let result;
+
+  try {
+    result = await searchModel.searchAcademy(schools, cities);
+  } catch (error) {
+    res.send({ status: "err", message: "SERVER_ERROR" });
+  }
+  
+  res.status(200).send({ status: "OK", academies: result });
+};
