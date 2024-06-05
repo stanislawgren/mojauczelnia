@@ -49,6 +49,19 @@ export const UniversityOpinionsPage = () => {
     });
 
     if (res.status == "OK") {
+      setReviews((reviews: any) => [
+        ...reviews,
+        {
+          stars: stars,
+          review: review,
+          academy_id: universityObj.academy_id,
+          user_id: auth.user?.user_id,
+          date: new Date(),
+          user_name: auth.user?.user_name,
+          user_academy: auth.user?.academy_id,
+        },
+      ]);
+
       setStars(0);
       setReview("");
     }
@@ -153,7 +166,7 @@ export const UniversityOpinionsPage = () => {
                 </div>
               </div>
             )}
-            {reviews.map((review: any, index: any) => {
+            {reviews.toReversed().map((review: any, index: any) => {
               return <ReviewItem key={index} review={review} />;
             })}
           </div>
